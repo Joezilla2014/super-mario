@@ -5,7 +5,7 @@ import {loadBullet} from './entities/Bullet.js';
 import {loadCannon} from './entities/Cannon.js';
 import {loadBrickSharpnel} from './entities/BrickSharpnel.js';
 
-export function loadEntities(audioContext) {
+export async function loadEntities(audioContext) {
     const entityFactories = {};
 
     function addAs(name) {
@@ -16,7 +16,7 @@ export function loadEntities(audioContext) {
         return loader(audioContext).then(addAs(name));
     }
 
-    return Promise.all([
+    await Promise.all([
         setup(loadMario, 'mario'),
         setup(loadGoombaBrown, 'goomba-brown'),
         setup(loadGoombaBlue, 'goomba-blue'),
@@ -25,6 +25,7 @@ export function loadEntities(audioContext) {
         setup(loadBullet, 'bullet'),
         setup(loadCannon, 'cannon'),
         setup(loadBrickSharpnel, 'brickSharpnel'),
-    ])
-    .then(() => entityFactories);
+    ]);
+
+    return entityFactories;
 }

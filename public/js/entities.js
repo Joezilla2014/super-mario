@@ -3,6 +3,7 @@ import {loadGoombaBrown, loadGoombaBlue} from './entities/Goomba.js';
 import {loadKoopaGreen, loadKoopaBlue} from './entities/Koopa.js';
 import {loadBullet} from './entities/Bullet.js';
 import {loadCannon} from './entities/Cannon.js';
+import {loadBrickSharpnel} from './entities/BrickSharpnel.js';
 
 export function loadEntities(audioContext) {
     const entityFactories = {};
@@ -19,7 +20,7 @@ export function loadEntities(audioContext) {
         loadKoopaBlue(audioContext).then(addAs('koopa-blue')),
         loadBullet(audioContext).then(addAs('bullet')),
         loadCannon(audioContext).then(addAs('cannon')),
-
+        loadBrickSharpnel(audioContext).then(addAs('brickSharpnel')),
     ])
     .then(() => entityFactories);
 }

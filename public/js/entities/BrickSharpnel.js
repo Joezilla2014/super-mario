@@ -29,8 +29,10 @@ function createPool(factory, size) {
 }
 
 function createFactory(sprite, audio) {
+    const spinBrick = sprite.animations.get('spinning-brick');
+
     function draw(context) {
-        sprite.draw('bullet', context, 0, 0);
+        sprite.draw(spinBrick(this.lifetime), context, 0, 0);
     }
 
     const pool = []

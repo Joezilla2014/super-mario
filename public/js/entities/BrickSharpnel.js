@@ -21,7 +21,11 @@ function createPool(factory, size) {
     for (let i = 0; i < size; i++) {
         pool.push(factory());
     }
-    return () => pool[count++ % pool.length];
+    return () => {
+        const entity = pool[count++ % pool.length];
+        entity.lifetime = 0;
+        return entity;
+    }
 }
 
 function createFactory(sprite, audio) {

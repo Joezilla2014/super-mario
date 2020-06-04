@@ -55,5 +55,5 @@ function createFactory(sprite, audio) {
         entity.addTrait(new Velocity());
         entity.draw = draw;
         return entity;
-    }, 4);
+    }, 8);
 }

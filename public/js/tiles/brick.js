@@ -17,6 +17,7 @@ function createSharpnel(gameContext, match) {
     for (const brick of bricks) {
         brick.pos.copy(center);
     }
+    bricks[0].sounds.add('break');
     bricks[0].vel.set(-50, -400);
     bricks[1].vel.set(-25, -400);
     bricks[2].vel.set(25, -400);

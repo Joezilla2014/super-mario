@@ -1,12 +1,18 @@
 import Entity from '../Entity.js';
 import Gravity from '../traits/Gravity.js';
 import Velocity from '../traits/Velocity.js';
+import {loadAudioBoard} from '../loaders/audio.js';
 import {loadSpriteSheet} from '../loaders/sprite.js';
 import LifeLimit from '../traits/LifeLimit.js';
 
-export function loadBrickSharpnel() {
-    return loadSpriteSheet('brick-sharpnel')
-    .then(createFactory);
+export function loadBrickSharpnel(audioContext) {
+    return Promise.all([
+        loadSpriteSheet('brick-sharpnel'),
+        loadAudioBoard('brick', audioContext),
+    ])
+    .then(([sprite, audio]) => {
+        return createFactory(sprite, audio);
+    });
 }
 
 function createPool(factory, size) {
@@ -18,7 +24,7 @@ function createPool(factory, size) {
     return () => pool[count++ % pool.length];
 }
 
-function createFactory(sprite) {
+function createFactory(sprite, audio) {
     function draw(context) {
         sprite.draw('bullet', context, 0, 0);
     }
@@ -36,6 +42,7 @@ function createFactory(sprite) {
 
     return createPool(function createBrickShrapnel() {
         const entity = new Entity();
+        entity.audio = audio;
         entity.size.set(8, 8);
         entity.addTrait(new LifeLimit());
         entity.addTrait(new Gravity());

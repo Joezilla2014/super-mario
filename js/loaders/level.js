@@ -111,7 +111,7 @@ function setupTriggers(levelSpec, level) {
 
 export function createLevelLoader(entityFactory) {
     return function loadLevel(name) {
-        return loadJSON(`/levels/${name}.json`)
+        return loadJSON(`/super-mario/levels/${name}.json`)
         .then(levelSpec => Promise.all([
             levelSpec,
             loadSpriteSheet(levelSpec.spriteSheet),

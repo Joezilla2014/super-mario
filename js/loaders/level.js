@@ -48,7 +48,7 @@ function createSpawner() {
 
 
 function loadPattern(name) {
-    return loadJSON(`/sprites/patterns/${name}.json`);
+    return loadJSON(`/super-mario/sprites/patterns/${name}.json`);
 }
 
 function setupBehavior(level) {

@@ -1,7 +1,7 @@
 {
     "fx": {
         "shoot": {
-            "url": "/audio/fx/thwomp.ogg"
+            "url": "/super-mario/audio/fx/thwomp.ogg"
         }
     }
 }
